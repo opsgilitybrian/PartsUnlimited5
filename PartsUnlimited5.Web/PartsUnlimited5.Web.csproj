@@ -9,8 +9,84 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\admin_icon.png" />
+    <None Include="wwwroot\images\admin_mo_icon.png" />
+    <None Include="wwwroot\images\cart_icon.png" />
+    <None Include="wwwroot\images\cart_mo_icon.png" />
+    <None Include="wwwroot\images\community_1.png" />
+    <None Include="wwwroot\images\community_2.png" />
+    <None Include="wwwroot\images\community_3.png" />
+    <None Include="wwwroot\images\community_4.png" />
+    <None Include="wwwroot\images\deploy_button.png" />
+    <None Include="wwwroot\images\drivingaccessories0.jpg" />
+    <None Include="wwwroot\images\drivingaccessories_gps_1.jpg" />
+    <None Include="wwwroot\images\drivingaccessories_phonegpsmount_1.jpg" />
+    <None Include="wwwroot\images\drivingaccessories_phonegpsmount_2.jpg" />
+    <None Include="wwwroot\images\drivingaccessories_phonegpsmount_3.jpg" />
+    <None Include="wwwroot\images\drivingaccessories_sunglasses_1.jpg" />
+    <None Include="wwwroot\images\drivingaccessories_sunglasses_2.jpg" />
+    <None Include="wwwroot\images\drivingaccessories_sunglasses_3.jpg" />
+    <None Include="wwwroot\images\drivingaccessories_sunglasses_4.jpg" />
+    <None Include="wwwroot\images\facebook_icon.jpg" />
+    <None Include="wwwroot\images\hero_image1.jpg" />
+    <None Include="wwwroot\images\hero_image2.jpg" />
+    <None Include="wwwroot\images\hero_image3.jpg" />
+    <None Include="wwwroot\images\home_icon.png" />
+    <None Include="wwwroot\images\home_mo_icon.png" />
+    <None Include="wwwroot\images\login_profile_icon.png" />
+    <None Include="wwwroot\images\login_safe_icon.png" />
+    <None Include="wwwroot\images\mobile_search_icon.png" />
+    <None Include="wwwroot\images\product_batteries_basic-battery.jpg" />
+    <None Include="wwwroot\images\product_batteries_jumper-leads.jpg" />
+    <None Include="wwwroot\images\product_batteries_premium-battery.jpg" />
+    <None Include="wwwroot\images\product_brakes_disc-calipers-red.jpg" />
+    <None Include="wwwroot\images\product_brakes_disc.jpg" />
+    <None Include="wwwroot\images\product_brakes_disk-pad-combo.jpg" />
+    <None Include="wwwroot\images\product_lighting_bugeye-headlight.jpg" />
+    <None Include="wwwroot\images\product_lighting_headlight.jpg" />
+    <None Include="wwwroot\images\product_lighting_lightbulb.jpg" />
+    <None Include="wwwroot\images\product_oil_filters.jpg" />
+    <None Include="wwwroot\images\product_oil_oil-filter-combo.jpg" />
+    <None Include="wwwroot\images\product_oil_premium-oil.jpg" />
+    <None Include="wwwroot\images\product_wheel_rim-blue.jpg" />
+    <None Include="wwwroot\images\product_wheel_rim-red.jpg" />
+    <None Include="wwwroot\images\product_wheel_rim.jpg" />
+    <None Include="wwwroot\images\product_wheel_tyre-rim-chrome-combo.jpg" />
+    <None Include="wwwroot\images\product_wheel_tyre-wheel-combo-pack.jpg" />
+    <None Include="wwwroot\images\product_wheel_tyre-wheel-combo.jpg" />
+    <None Include="wwwroot\images\profile_icon.png" />
+    <None Include="wwwroot\images\profile_mo_icon.png" />
+    <None Include="wwwroot\images\remove_icon.png" />
+    <None Include="wwwroot\images\rims0.jpg" />
+    <None Include="wwwroot\images\rims1.jpg" />
+    <None Include="wwwroot\images\rims2.jpg" />
+    <None Include="wwwroot\images\rims3.jpg" />
+    <None Include="wwwroot\images\rims4.jpg" />
+    <None Include="wwwroot\images\rims5.jpg" />
+    <None Include="wwwroot\images\rims6.jpg" />
+    <None Include="wwwroot\images\search_icon.png" />
+    <None Include="wwwroot\images\search_mo_icon.png" />
+    <None Include="wwwroot\images\shopnow_button.png" />
+    <None Include="wwwroot\images\social_placeholder.png" />
+    <None Include="wwwroot\images\submenu_image1.jpg" />
+    <None Include="wwwroot\images\submenu_image2.jpg" />
+    <None Include="wwwroot\images\submenu_image3.jpg" />
+    <None Include="wwwroot\images\submenu_image4.jpg" />
+    <None Include="wwwroot\images\unlimited_logo.png" />
   </ItemGroup>
 
 </Project>
