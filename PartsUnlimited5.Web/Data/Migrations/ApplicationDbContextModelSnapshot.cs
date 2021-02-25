@@ -15,9 +15,9 @@ namespace PartsUnlimited5.Web.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.2");
+                .HasAnnotation("ProductVersion", "5.0.3")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("CategoryProduct", b =>
                 {
@@ -59,6 +59,22 @@ namespace PartsUnlimited5.Web.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "e60bc581-bc55-41ca-9ae6-ace692e15ae5",
+                            ConcurrencyStamp = "1",
+                            Name = "SystemAdmin",
+                            NormalizedName = "SYSTEMADMIN"
+                        },
+                        new
+                        {
+                            Id = "39ff8dfb-95d0-4ab5-b32b-3b85d26508c0",
+                            ConcurrencyStamp = "2",
+                            Name = "GeneralCustomer",
+                            NormalizedName = "GENERALCUSTOMER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -66,7 +82,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -148,6 +164,24 @@ namespace PartsUnlimited5.Web.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "81570d0b-c116-41f3-91e0-298c3a027d06",
+                            Email = "seedadministrator@example.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SEEDADMINISTRATOR@EXAMPLE.COM",
+                            NormalizedUserName = "SEEDADMINISTRATOR",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB9FIk0z5Ci79JEGK06lndZgQ9Ago2FxFkN4MlVZQD1Di+6zFcuEu/KiINwnmVrspw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "4d80d994-9453-44f8-9c46-e49d627f46a4",
+                            TwoFactorEnabled = false,
+                            UserName = "SeedAdministrator"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -155,7 +189,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -211,6 +245,13 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            RoleId = "e60bc581-bc55-41ca-9ae6-ace692e15ae5"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -239,7 +280,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AddressLine1")
                         .IsRequired()
@@ -315,7 +356,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()
@@ -352,6 +393,53 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.HasIndex("LastModifiedByUserId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Brakes for your buggy",
+                            IsActive = true,
+                            Name = "Brakes"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Lighting for your buggy",
+                            IsActive = true,
+                            Name = "Lighting"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Wheels and Tires for your buggy",
+                            IsActive = true,
+                            Name = "WheelsAndTires"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Batteries for your buggy",
+                            IsActive = true,
+                            Name = "Batteries"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Oil for your buggy",
+                            IsActive = true,
+                            Name = "Oil"
+                        });
                 });
 
             modelBuilder.Entity("PartsUnlimited5.Web.Models.CommunityPost", b =>
@@ -359,7 +447,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()
@@ -401,7 +489,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()
@@ -443,7 +531,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()
@@ -479,7 +567,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()
@@ -522,7 +610,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
@@ -570,7 +658,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()
@@ -631,6 +719,278 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.HasIndex("ManufacturerId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Our brake disks and pads perform the best together. Better stopping distances without locking up, reduced rust and dusk.",
+                            IsActive = false,
+                            LeadTime = 6,
+                            Price = 25.989999999999998,
+                            ProductArtUrl = "product_brakes_disk-pad-combo.jpg",
+                            ProductDetails = "{ \"Disk Design\" : \"Cross Drill Slotted\", \" Pad Material\" : \"Ceramic\", \"Construction\" : \"Vented Rotor\", \"Diameter\" : \"10.3 in.\", \"Finish\" : \"Silver Zinc Plated\", \"Hat Finish\" : \"Silver Zinc Plated\", \"Material\" : \"Cast Iron\" }",
+                            SalePrice = 25.989999999999998,
+                            SkuNumber = "BRA-0001",
+                            Title = "Disk and Pad Combo"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Our Brake Rotor Performs well in wet conditions with a smooth responsive feel. Machined to a high tolerance to ensure all of our Brake Rotors are safe and reliable.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 18.989999999999998,
+                            ProductArtUrl = "product_brakes_disc.jpg",
+                            ProductDetails = "{ \"Disk Design\" : \"Cross Drill Slotted\",  \"Construction\" : \"Vented Rotor\", \"Diameter\" : \"10.3 in.\", \"Finish\" : \"Silver Zinc Plated\", \"Hat Finish\" : \"Black E-coating\",  \"Material\" : \"Cast Iron\" }",
+                            SalePrice = 18.989999999999998,
+                            SkuNumber = "BRA-0002",
+                            Title = "Brake Rotor"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Upgrading your brakes can increase stopping power, reduce dust and noise. Our Disk Calipers exceed factory specification for the best performance.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 43.990000000000002,
+                            ProductArtUrl = "product_brakes_disc-calipers-red.jpg",
+                            ProductDetails = "{\"Disk Design\" : \"Cross Drill Slotted\", \" Pad Material\" : \"Carbon Ceramic\",  \"Construction\" : \"Vented Rotor\", \"Diameter\" : \"11.3 in.\", \"Bolt Pattern\": \"6 x 5.31 in.\", \"Finish\" : \"Silver Zinc Plated\",  \"Material\" : \"Carbon Alloy\", \"Includes Brake Pads\" : \"Yes\" }",
+                            SalePrice = 43.990000000000002,
+                            SkuNumber = "BRA-0003",
+                            Title = "Brake Disk and Calipers"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Our Halogen Headlights are made to fit majority of vehicles with our  universal fitting mold. Product requires some assembly and includes light bulbs.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 38.990000000000002,
+                            ProductArtUrl = "product_lighting_headlight.jpg",
+                            ProductDetails = "{ \"Light Source\" : \"Halogen\", \"Assembly Required\": \"Yes\", \"Color\" : \"Clear\", \"Interior\" : \"Chrome\", \"Beam\": \"low and high\", \"Wiring harness included\" : \"Yes\", \"Bulbs Included\" : \"No\",  \"Includes Parking Signal\" : \"Yes\"}",
+                            SalePrice = 38.990000000000002,
+                            SkuNumber = "LIG-0001",
+                            Title = "Halogen Headlights (2 Pack)"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Our Bugeye Headlights use Halogen light bulbs are made to fit into a standard Bugeye slot. Product requires some assembly and includes light bulbs.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 48.990000000000002,
+                            ProductArtUrl = "product_lighting_bugeye-headlight.jpg",
+                            ProductDetails = "{ \"Light Source\" : \"Halogen\", \"Assembly Required\": \"Yes\", \"Color\" : \"Clear\", \"Interior\" : \"Chrome\", \"Beam\": \"low and high\", \"Wiring harness included\" : \"No\", \"Bulbs Included\" : \"Yes\",  \"Includes Parking Signal\" : \"Yes\"}",
+                            SalePrice = 48.990000000000002,
+                            SkuNumber = "LIG-0002",
+                            Title = "Bugeye Headlights (2 Pack)"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = " Clear bulb that with a universal fitting for all headlights/taillights.  Simple Installation, low wattage and a clear light for optimal visibility and efficiency.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 6.4900000000000002,
+                            ProductArtUrl = "product_lighting_lightbulb.jpg",
+                            ProductDetails = "{ \"Color\" : \"Clear\", \"Fit\" : \"Universal\", \"Wattage\" : \"30 Watts\", \"Includes Socket\" : \"Yes\"}",
+                            SalePrice = 6.4900000000000002,
+                            SkuNumber = "LIG-0003",
+                            Title = "Turn Signal Light Bulb"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A Parts Unlimited favorite, the Matte Finish Rim is affordable low profile style. Fits all low profile tires.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 75.989999999999995,
+                            ProductArtUrl = "product_wheel_rim.jpg",
+                            ProductDetails = "{ \"Material\" : \"Aluminum alloy\",  \"Design\" : \"Spoke\", \"Spokes\" : \"9\",  \"Number of Lugs\" : \"4\", \"Wheel Diameter\" : \"17 in.\", \"Color\" : \"Black\", \"Finish\" : \"Matte\" } ",
+                            SalePrice = 75.989999999999995,
+                            SkuNumber = "WHE-0001",
+                            Title = "Matte Finish Rim"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Stand out from the crowd with a set of aftermarket blue rims to make you vehicle turn heads and at a price that will do the same.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 88.989999999999995,
+                            ProductArtUrl = "product_wheel_rim-blue.jpg",
+                            ProductDetails = "{ \"Material\" : \"Aluminum alloy\",  \"Design\" : \"Spoke\", \"Spokes\" : \"5\",  \"Number of Lugs\" : \"4\", \"Wheel Diameter\" : \"18 in.\", \"Color\" : \"Blue\", \"Finish\" : \"Glossy\" } ",
+                            SalePrice = 88.989999999999995,
+                            SkuNumber = "WHE-0002",
+                            Title = "Blue Performance Alloy Rim"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Light Weight Rims with a twin cross spoke design for stability and reliable performance.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 99.989999999999995,
+                            ProductArtUrl = "product_wheel_rim-red.jpg",
+                            ProductDetails = "{ \"Material\" : \"Aluminum alloy\",  \"Design\" : \"Spoke\", \"Spokes\" : \"12\",  \"Number of Lugs\" : \"5\", \"Wheel Diameter\" : \"18 in.\", \"Color\" : \"Red\", \"Finish\" : \"Matte\" } ",
+                            SalePrice = 99.489999999999995,
+                            SkuNumber = "WHE-0003",
+                            Title = "High Performance Rim"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "For the endurance driver, take advantage of our best wearing tire yet. Composite rubber and a heavy duty steel rim.",
+                            IsActive = false,
+                            LeadTime = 4,
+                            Price = 72.489999999999995,
+                            ProductArtUrl = "product_wheel_tyre-wheel-combo.jpg",
+                            ProductDetails = "{ \"Material\" : \"Steel\",  \"Design\" : \"Spoke\", \"Spokes\" : \"8\",  \"Number of Lugs\" : \"4\", \"Wheel Diameter\" : \"19 in.\", \"Color\" : \"Gray\", \"Finish\" : \"Standard\", \"Pre-Assembled\" : \"Yes\" } ",
+                            SalePrice = 72.489999999999995,
+                            SkuNumber = "WHE-0004",
+                            Title = "Wheel Tire Combo"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Save time and money with our ever popular wheel and tire combo. Pre-assembled and ready to go.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 129.99000000000001,
+                            ProductArtUrl = "product_wheel_tyre-rim-chrome-combo.jpg",
+                            ProductDetails = "{ \"Material\" : \"Aluminum alloy\",  \"Design\" : \"Spoke\", \"Spokes\" : \"10\",  \"Number of Lugs\" : \"5\", \"Wheel Diameter\" : \"17 in.\", \"Color\" : \"Silver\", \"Finish\" : \"Chrome\", \"Pre-Assembled\" : \"Yes\" } ",
+                            SalePrice = 129.99000000000001,
+                            SkuNumber = "WHE-0005",
+                            Title = "Chrome Rim Tire Combo"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Having trouble in the wet? Then try our special patent tire on a heavy duty steel rim. These wheels perform excellent in all conditions but were designed specifically for wet weather.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 219.99000000000001,
+                            ProductArtUrl = "product_wheel_tyre-wheel-combo-pack.jpg",
+                            ProductDetails = "{ \"Material\" : \"Steel\",  \"Design\" : \"Spoke\", \"Spokes\" : \"8\",  \"Number of Lugs\" : \"5\", \"Wheel Diameter\" : \"19 in.\", \"Color\" : \"Gray\", \"Finish\" : \"Standard\", \"Pre-Assembled\" : \"Yes\" } ",
+                            SalePrice = 219.99000000000001,
+                            SkuNumber = "WHE-0006",
+                            Title = "Wheel Tire Combo (4 Pack)"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Calcium is the most common battery type. It is durable and has a long shelf and service life. They also provide high cold cranking amps.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 129.99000000000001,
+                            ProductArtUrl = "product_batteries_basic-battery.jpg",
+                            ProductDetails = "{ \"Type\": \"Calcium\", \"Volts\" : \"12\", \"Weight\" : \"22.9 lbs\", \"Size\" :  \"7.7x5x8.6\", \"Cold Cranking Amps\" : \"510\" }",
+                            SalePrice = 129.99000000000001,
+                            SkuNumber = "BAT-0001",
+                            Title = "12-Volt Calcium Battery"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Spiral Coil batteries are the preferred option for high performance Vehicles where extra toque is need for starting. They are more resistant to heat and higher charge rates than conventional batteries.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 154.99000000000001,
+                            ProductArtUrl = "product_batteries_premium-battery.jpg",
+                            ProductDetails = "{ \"Type\": \"Spiral Coil\", \"Volts\" : \"12\", \"Weight\" : \"20.3 lbs\", \"Size\" :  \"7.4x5.1x8.5\", \"Cold Cranking Amps\" : \"460\" }",
+                            SalePrice = 154.99000000000001,
+                            SkuNumber = "BAT-0002",
+                            Title = "Spiral Coil Battery"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Battery Jumper Leads have a built in surge protector and a includes a plastic carry case to keep them safe from corrosion.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 16.989999999999998,
+                            ProductArtUrl = "product_batteries_jumper-leads.jpg",
+                            ProductDetails = "{ \"length\" : \"6ft.\", \"Connection Type\" : \"Alligator Clips\", \"Fit\" : \"Universal\", \"Max Amp's\" : \"750\" }",
+                            SalePrice = 16.989999999999998,
+                            SkuNumber = "BAT-0003",
+                            Title = "Jumper Leads"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Ensure that your vehicle's engine has a longer life with our new filter set. Trapping more dirt to ensure old freely circulates through your engine.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 28.989999999999998,
+                            ProductArtUrl = "product_oil_filters.jpg",
+                            ProductDetails = "{ \"Filter Type\" : \"Canister and Cartridge\", \"Thread Size\" : \"0.75-16 in.\", \"Anti-Drainback Valve\" : \"Yes\"}",
+                            SalePrice = 28.989999999999998,
+                            SkuNumber = "OIL-0001",
+                            Title = "Filter Set"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "This Oil and Oil Filter combo is suitable for all types of passenger and light commercial vehicles. Providing affordable performance through excellent lubrication and breakdown resistance.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 34.490000000000002,
+                            ProductArtUrl = "product_oil_oil-filter-combo.jpg",
+                            ProductDetails = "{ \"Filter Type\" : \"Canister\", \"Thread Size\" : \"0.75-16 in.\", \"Anti-Drainback Valve\" : \"Yes\", \"Size\" : \"1.1 gal.\", \"Synthetic\" : \"No\" }",
+                            SalePrice = 34.490000000000002,
+                            SkuNumber = "OIL-0002",
+                            Title = "Oil and Filter Combo"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "This Oil is designed to reduce sludge deposits and metal friction throughout your cars engine. Provides performance no matter the condition or temperature.",
+                            IsActive = false,
+                            LeadTime = 0,
+                            Price = 36.490000000000002,
+                            ProductArtUrl = "product_oil_premium-oil.jpg",
+                            ProductDetails = "{ \"Size\" :  \"1.1 Gal.\" , \"Synthetic \" : \"Yes\"}",
+                            SalePrice = 36.490000000000002,
+                            SkuNumber = "OIL-0003",
+                            Title = "Synthetic Engine Oil"
+                        });
                 });
 
             modelBuilder.Entity("PartsUnlimited5.Web.Models.Raincheck", b =>
@@ -638,7 +998,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()
@@ -680,7 +1040,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
@@ -728,7 +1088,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()
@@ -765,7 +1125,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
@@ -813,7 +1173,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()
@@ -849,7 +1209,7 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("CreatedByUserId")
                         .IsRequired()

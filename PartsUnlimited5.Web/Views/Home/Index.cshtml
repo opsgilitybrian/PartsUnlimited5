@@ -2,7 +2,71 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="height:400px; background-image: url('images/hero_image1.jpg')">
+            <a href="@Url.Action("Browse", "Store", new { categoryId = 5 })" class="carousel-wrapper-link"></a>
+            <p>All oil and filters</p>
+            <p>50%</p>
+            <p>Christmas discount</p>
+            <div class="carousel-caption hidden-xs hidden-sm">
+                <a href="@Url.Action("Browse", "Store", new { categoryId = 5 })" class="carousel-link">Shop Now</a>
+            </div>
+        </div>
+        <div class="carousel-item" style="height: 400px; background-image: url('images/hero_image2.jpg')">
+            <a href="@Url.Action("Browse", "Store", new { categoryId = 3 })" class="carousel-wrapper-link"></a>
+            <div class="container">
+                <p>New tires</p>
+                <ul>
+                    <li>Improved fuel efficiency</li>
+                    <li>Superior wet weather breaking</li>
+                    <li>Added durability</li>
+                </ul>
+            </div>
+            <div class="carousel-caption hidden-xs hidden-sm">
+                <a href="@Url.Action("Browse", "Store", new { categoryId = 3 })" class="carousel-link">Shop Now</a>
+            </div>
+        </div>
+        <div class="carousel-item" style="height: 400px; background-image: url('images/hero_image3.jpg')">
+            <a href="@Url.Action("Index", "Store")" class="carousel-wrapper-link"></a>
+            <p>Old<span> or </span>new</p>
+            <p>Find the parts for you</p>
+            <div class="carousel-caption hidden-xs hidden-sm">
+                <a href="@Url.Action("Browse", "Store", new { categoryId = 3 })" class="carousel-link">Shop Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="featured-areas">
+    <div class="container">
+        <section class="section-alt">
+            <div class="row">
+                <div class="area-tile col-xs-12 col-sm-3 col-md-3">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="/Images/submenu_image1.jpg" alt="New Season Parts Image" class="hidden-xs" />
+                        <div>New Season Parts</div>
+                    </a>
+                </div>
+                <div class="area-tile col-xs-12 col-sm-3 col-md-3">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="/Images/submenu_image2.jpg" alt="How to Guide Image" class="hidden-xs" />
+                        <div>How to Guide</div>
+                    </a>
+                </div>
+                <div class="area-tile col-xs-12 col-sm-3 col-md-3">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="/Images/submenu_image3.jpg" alt="Understand Your Engine Image" class="hidden-xs" />
+                        <div>Understand Your Engine</div>
+                    </a>
+                </div>
+                <div class="area-tile col-xs-12 col-sm-3 col-md-3">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="/Images/submenu_image4.jpg" alt="Road Trip Tips Image" class="hidden-xs" />
+                        <div>Road Trip Tips</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>
