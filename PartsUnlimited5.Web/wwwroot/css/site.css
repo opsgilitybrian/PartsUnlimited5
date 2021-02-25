@@ -70,10 +70,14 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-/*#login-link {
-    background-color:white;
+.product-card {
+    min-height:330px;
+    max-height:330px;
+    min-width:200px;
+    max-width:200px;
 }
 
-#register-link {
-    background-color:white;
-}*/
+.card-header-dim {
+    min-height: 80px;
+    max-height: 80px;
+}
