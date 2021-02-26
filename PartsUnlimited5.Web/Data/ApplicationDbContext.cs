@@ -194,8 +194,6 @@ namespace PartsUnlimited5.Web.Data
             modelBuilder.Entity<Category>().HasData(oilsCategory);
         }
 
-        
-
         private List<Product> GetBrakes()
         {
             var products = new List<Product>();

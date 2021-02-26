@@ -43,7 +43,7 @@ namespace PartsUnlimited5.Web.Controllers
                 case "Oil":
                     cat = categories.SingleOrDefault(x => x.Name.ToLower().Equals("oil"));
                     break;
-                case "More":
+                case "All":
                     cat = null;
                     foreach (var c in categories)
                     {
@@ -63,6 +63,47 @@ namespace PartsUnlimited5.Web.Controllers
             }
 
             return View(products);
+        }
+
+        public async Task<IActionResult> Stores(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var store = await _context.Stores
+                .Include(s => s.CreatedByUser)
+                .Include(s => s.LastModifiedByUser)
+                .Include(s => s.Inventory).ThenInclude(i => i.Product)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (store == null)
+            {
+                return NotFound();
+            }
+
+            return View(store);
+        }
+
+
+        public async Task<IActionResult> Products(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Products
+                .Include(p => p.CreatedByUser)
+                .Include(p => p.LastModifiedByUser)
+                .Include(p => p.Manufacturer)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
         }
     }
 }

@@ -6,20 +6,21 @@
 <div class="row">
     @foreach (var product in Model)
     {
-        <div class="col-md-3">
-            <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">
-                <div class="card">
-                    <div class="card-header card-header-dim">
-                        <span style="font-weight: bold; font-size:18px;">@product.Title</span>
-                    </div>
-                    <div class="card-body">
-                        <img class="img-fluid" src="/images/@product.ProductArtUrl" alt="@product.Title" />
-                    </div>
-                    <div class="card-footer">
-                        <span style="font-weight: normal; font-size:16px;">@product.Price.ToString("C")</span>
-                    </div>
+
+    <div class="col-md-3">
+        <a asp-controller="Inventory" asp-action="Products" asp-route-id="@product.Id">
+            <div class="card">
+                <div class="card-header card-header-dim">
+                    <span style="font-weight: bold; font-size:18px;">@product.Title</span>
                 </div>
-            </a>
-        </div>
+                <div class="card-body">
+                    <img class="img-fluid" src="/images/@product.ProductArtUrl" alt="@product.Title" />
+                </div>
+                <div class="card-footer">
+                    <span style="font-weight: normal; font-size:16px;">@product.Price.ToString("C")</span>
+                </div>
+            </div>
+        </a>
+    </div>
     }
 </div>

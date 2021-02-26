@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using PartsUnlimited5.Web.Models;
 
 namespace PartsUnlimited5.Web.Controllers
 {
+    [Authorize(Roles = "")]
     public class StoresController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -71,6 +73,7 @@ namespace PartsUnlimited5.Web.Controllers
             ViewData["LastModifiedByUserId"] = new SelectList(_context.Users, "Id", "Id", store.LastModifiedByUserId);
             return View(store);
         }
+
 
         // GET: Stores/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -161,6 +164,26 @@ namespace PartsUnlimited5.Web.Controllers
         private bool StoreExists(int id)
         {
             return _context.Stores.Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> StoreWithProducts(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var store = await _context.Stores
+                .Include(s => s.CreatedByUser)
+                .Include(s => s.LastModifiedByUser)
+                .Include(s => s.Inventory).ThenInclude(i => i.Product)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (store == null)
+            {
+                return NotFound();
+            }
+
+            return View(store);
         }
     }
 }
