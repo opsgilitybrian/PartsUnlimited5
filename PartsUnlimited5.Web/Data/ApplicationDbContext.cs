@@ -37,6 +37,9 @@ namespace PartsUnlimited5.Web.Data
         private const string ADMIN_ROLE_ID = "e60bc581-bc55-41ca-9ae6-ace692e15ae5";
         private const string CUSTOMER_ROLE_ID = "39ff8dfb-95d0-4ab5-b32b-3b85d26508c0";
         private DateTime seedDateTime = new DateTime(2021, 01, 01);
+        private const string WEB_STORE = "WebStore";
+        private const string STORE_1 = "Store1";
+        private const string STORE_2 = "Store2";
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -49,11 +52,15 @@ namespace PartsUnlimited5.Web.Data
             SeedProducts(modelBuilder);
             SeedCategories(modelBuilder);
 
-            SeedStoresAndStoreProducts(modelBuilder);
+            SeedStores(modelBuilder);
+            //SeedStoreProducts(modelBuilder);
         }
 
         private void SeedUsers(ModelBuilder modelBuilder)
         {
+            //var ph = new PasswordHasher<IdentityUser>();
+            //user.PasswordHash = ph.HashPassword(user, "seeduser#123!");
+
             //create the admin user
             var user = new IdentityUser
             {
@@ -63,11 +70,16 @@ namespace PartsUnlimited5.Web.Data
                 EmailConfirmed = true,
                 UserName = "SeedAdministrator",
                 NormalizedUserName = "SEEDADMINISTRATOR",
-                TwoFactorEnabled = false
+                TwoFactorEnabled = false,
+                SecurityStamp = string.Empty,
+                PasswordHash = "AQAAAAEAACcQAAAAEB9FIk0z5Ci79JEGK06lndZgQ9Ago2FxFkN4MlVZQD1Di+6zFcuEu/KiINwnmVrspw==",
+                AccessFailedCount = 0,
+                ConcurrencyStamp = "1",
+                LockoutEnabled = true,
+                LockoutEnd = null,
+                PhoneNumber = "999-999-9999",
+                PhoneNumberConfirmed = true
             };
-
-            var ph = new PasswordHasher<IdentityUser>();
-            user.PasswordHash = ph.HashPassword(user, "seeduser#123!");
 
             modelBuilder.Entity<IdentityUser>().HasData(user);
         }
@@ -466,9 +478,189 @@ namespace PartsUnlimited5.Web.Data
             return products;
         }
 
-        private void SeedStoresAndStoreProducts(ModelBuilder modelBuilder)
+        private void SeedStores(ModelBuilder modelBuilder)
         {
-            //TODO: Implement this
+            var stores = new List<Store>()
+            {
+                new Store()
+                {
+                    Id = 1,
+                    CreatedByUserId = SYSTEM_ADMIN_ID,
+                    CreatedDate = seedDateTime,
+                    IsActive = true,
+                    Name = WEB_STORE
+                },
+                new Store()
+                {
+                    Id = 2,
+                    CreatedByUserId = SYSTEM_ADMIN_ID,
+                    CreatedDate = seedDateTime,
+                    IsActive = true,
+                    Name = STORE_1
+                },
+                new Store()
+                {
+                    Id = 3,
+                    CreatedByUserId = SYSTEM_ADMIN_ID,
+                    CreatedDate = seedDateTime,
+                    IsActive = true,
+                    Name = STORE_2
+                }
+            };
+
+            modelBuilder.Entity<Store>().HasData(stores);
         }
+
+        /*
+         * WARNING: do not use this unless you have to, then create a separate migration without it enabled
+         * If you leave this on, you will get new data on every run, and if you try to comment it out  you will delete your data on every new migration
+         * so it is only here for emergency use if somehow you need new data and can't use the existing migration
+         * 
+        private void SeedStoreProducts(ModelBuilder modelBuilder)
+        {
+            //create a new list of products to associate
+            var storeProducts = new List<StoreProduct>();
+
+            storeProducts.AddRange(GenerateStoreBrakeProducts(1, 1));
+            storeProducts.AddRange(GenerateStoreLightingProducts(1, 10));
+            storeProducts.AddRange(GenerateStoreTireProducts(1, 20));
+            storeProducts.AddRange(GenerateStoreBatteryProducts(1, 30));
+            storeProducts.AddRange(GenerateStoreOilProducts(1, 40));
+
+            storeProducts.AddRange(GenerateStoreBrakeProducts(2, 100));
+            storeProducts.AddRange(GenerateStoreLightingProducts(2, 110));
+            storeProducts.AddRange(GenerateStoreTireProducts(2, 120));
+            storeProducts.AddRange(GenerateStoreBatteryProducts(2, 130));
+            storeProducts.AddRange(GenerateStoreOilProducts(2, 140));
+
+            storeProducts.AddRange(GenerateStoreBrakeProducts(2, 200));
+            storeProducts.AddRange(GenerateStoreLightingProducts(2, 210));
+            storeProducts.AddRange(GenerateStoreTireProducts(2, 220));
+            storeProducts.AddRange(GenerateStoreBatteryProducts(2, 230));
+            storeProducts.AddRange(GenerateStoreOilProducts(2, 240));
+
+            modelBuilder.Entity<StoreProduct>().HasData(storeProducts);
+        }
+
+        private List<StoreProduct> GenerateStoreBrakeProducts(int storeId, int nextId)
+        {
+            Random r = new Random();
+            var brakeProducts = GetBrakes();
+            var storeProducts = new List<StoreProduct>();
+            foreach (var b in brakeProducts)
+            { 
+                storeProducts.Add(new StoreProduct()
+                {
+                    CreatedByUserId = SYSTEM_ADMIN_ID,
+                    CreatedDate = seedDateTime,
+                    Id = nextId++,
+                    IsActive = true,
+                    OutOfStock = false,
+                    QuantityOnHand = r.Next(2, 50),
+                    QuantityOnOrder = r.Next(5, 10),
+                    ProductId = b.Id,
+                    StoreId = storeId
+                }); 
+            }
+
+            return storeProducts;
+        }
+
+        private List<StoreProduct> GenerateStoreLightingProducts(int storeId, int nextId)
+        {
+            Random r = new Random();
+            var products = GetLights();
+            var storeProducts = new List<StoreProduct>();
+            foreach (var p in products)
+            {
+                storeProducts.Add(new StoreProduct()
+                {
+                    CreatedByUserId = SYSTEM_ADMIN_ID,
+                    CreatedDate = seedDateTime,
+                    Id = nextId++,
+                    IsActive = true,
+                    OutOfStock = false,
+                    QuantityOnHand = r.Next(2, 50),
+                    QuantityOnOrder = r.Next(5, 10),
+                    ProductId = p.Id,
+                    StoreId = storeId
+                });
+            }
+
+            return storeProducts;
+        }
+
+        private List<StoreProduct> GenerateStoreTireProducts(int storeId, int nextId)
+        {
+            Random r = new Random();
+            var products = GetTires();
+            var storeProducts = new List<StoreProduct>();
+            foreach (var p in products)
+            {
+                storeProducts.Add(new StoreProduct()
+                {
+                    CreatedByUserId = SYSTEM_ADMIN_ID,
+                    CreatedDate = seedDateTime,
+                    Id = nextId++,
+                    IsActive = true,
+                    OutOfStock = false,
+                    QuantityOnHand = r.Next(2, 50),
+                    QuantityOnOrder = r.Next(5, 10),
+                    ProductId = p.Id,
+                    StoreId = storeId
+                });
+            }
+
+            return storeProducts;
+        }
+
+        private List<StoreProduct> GenerateStoreBatteryProducts(int storeId, int nextId)
+        {
+            Random r = new Random();
+            var products = GetBatteries();
+            var storeProducts = new List<StoreProduct>();
+            foreach (var p in products)
+            {
+                storeProducts.Add(new StoreProduct()
+                {
+                    CreatedByUserId = SYSTEM_ADMIN_ID,
+                    CreatedDate = seedDateTime,
+                    Id = nextId++,
+                    IsActive = true,
+                    OutOfStock = false,
+                    QuantityOnHand = r.Next(2, 50),
+                    QuantityOnOrder = r.Next(5, 10),
+                    ProductId = p.Id,
+                    StoreId = storeId
+                });
+            }
+
+            return storeProducts;
+        }
+
+        private List<StoreProduct> GenerateStoreOilProducts(int storeId, int nextId)
+        {
+            Random r = new Random();
+            var products = GetOils();
+            var storeProducts = new List<StoreProduct>();
+            foreach (var p in products)
+            {
+                storeProducts.Add(new StoreProduct()
+                {
+                    CreatedByUserId = SYSTEM_ADMIN_ID,
+                    CreatedDate = seedDateTime,
+                    Id = nextId++,
+                    IsActive = true,
+                    OutOfStock = false,
+                    QuantityOnHand = r.Next(2, 50),
+                    QuantityOnOrder = r.Next(5, 10),
+                    ProductId = p.Id,
+                    StoreId = storeId
+                });
+            }
+
+            return storeProducts;
+        }
+        */
     }
 }

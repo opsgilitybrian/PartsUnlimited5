@@ -10,8 +10,8 @@ using PartsUnlimited5.Web.Data;
 namespace PartsUnlimited5.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210225215259_seed-users-roles-categories-products")]
-    partial class seedusersrolescategoriesproducts
+    [Migration("20210226165637_seed-data-for-system")]
+    partial class seeddataforsystem
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -172,15 +172,16 @@ namespace PartsUnlimited5.Web.Data.Migrations
                         {
                             Id = "e1367305-f547-43e0-9af3-3e5e0861844b",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "81570d0b-c116-41f3-91e0-298c3a027d06",
+                            ConcurrencyStamp = "1",
                             Email = "seedadministrator@example.com",
                             EmailConfirmed = true,
-                            LockoutEnabled = false,
+                            LockoutEnabled = true,
                             NormalizedEmail = "SEEDADMINISTRATOR@EXAMPLE.COM",
                             NormalizedUserName = "SEEDADMINISTRATOR",
                             PasswordHash = "AQAAAAEAACcQAAAAEB9FIk0z5Ci79JEGK06lndZgQ9Ago2FxFkN4MlVZQD1Di+6zFcuEu/KiINwnmVrspw==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "4d80d994-9453-44f8-9c46-e49d627f46a4",
+                            PhoneNumber = "999-999-9999",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "SeedAdministrator"
                         });
@@ -1204,6 +1205,32 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     b.HasIndex("LastModifiedByUserId");
 
                     b.ToTable("Stores");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "WebStore"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Store1"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedByUserId = "e1367305-f547-43e0-9af3-3e5e0861844b",
+                            CreatedDate = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Store2"
+                        });
                 });
 
             modelBuilder.Entity("PartsUnlimited5.Web.Models.StoreProduct", b =>
