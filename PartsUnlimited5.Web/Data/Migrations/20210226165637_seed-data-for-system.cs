@@ -142,10 +142,41 @@ namespace PartsUnlimited5.Web.Data.Migrations
                     { 31, "e1367305-f547-43e0-9af3-3e5e0861844b", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, null, false, 14, 27, 6, 1 },
                     { 242, "e1367305-f547-43e0-9af3-3e5e0861844b", new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), true, null, null, false, 18, 31, 7, 2 }
                 });
+
+            /*** MANUALLY added for CategoryProduct relationships ***/
+            migrationBuilder.InsertData(
+                table: "CategoryProduct",
+                columns: new[] { "CategoriesId", "ProductsId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 1, 2 },
+                    { 1, 3 },
+                    { 2, 4 },
+                    { 2, 5 },
+                    { 2, 6 },
+                    { 3, 7 },
+                    { 3, 8 },
+                    { 3, 9 },
+                    { 3, 10 },
+                    { 3, 11 },
+                    { 3, 12 },
+                    { 4, 13 },
+                    { 4, 14 },
+                    { 4, 15 },
+                    { 5, 16 },
+                    { 5, 17 },
+                    { 5, 18 }
+                }
+            );
+            /*** ENd category product ***/
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            /** Manually added for category products **/
+            migrationBuilder.Sql(@"DELETE FROM CategoryProduct");
+
             /** Manually added for store products ***/
             migrationBuilder.DeleteData(
                 table: "StoreProducts",

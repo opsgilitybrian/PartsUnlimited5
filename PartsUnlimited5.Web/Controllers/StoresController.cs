@@ -162,5 +162,26 @@ namespace PartsUnlimited5.Web.Controllers
         {
             return _context.Stores.Any(e => e.Id == id);
         }
+
+
+        public async Task<IActionResult> StoreWithProducts(int id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var store = await _context.Stores
+                .Include(s => s.CreatedByUser)
+                .Include(s => s.LastModifiedByUser)
+                .Include(s => s.Inventory).ThenInclude(i => i.Product)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (store == null)
+            {
+                return NotFound();
+            }
+
+            return View(store);
+        }
     }
 }

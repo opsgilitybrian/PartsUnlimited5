@@ -43,7 +43,7 @@ namespace PartsUnlimited5.Web.Controllers
                 case "Oil":
                     cat = categories.SingleOrDefault(x => x.Name.ToLower().Equals("oil"));
                     break;
-                case "More":
+                case "All":
                     cat = null;
                     foreach (var c in categories)
                     {
