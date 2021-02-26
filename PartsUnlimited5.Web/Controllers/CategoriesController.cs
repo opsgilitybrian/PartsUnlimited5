@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using PartsUnlimited5.Web.Models;
 
 namespace PartsUnlimited5.Web.Controllers
 {
+    [Authorize(Roles = "SystemAdmin")]
     public class CategoriesController : BaseController
     {
         private readonly ApplicationDbContext _context;

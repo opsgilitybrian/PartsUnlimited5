@@ -1,7 +1,7 @@
 ﻿@model PartsUnlimited5.Web.Models.Store
 
 @{
-    ViewData["Title"] = "StoreWithProducts";
+    ViewData["Title"] = "Store Details";
 }
 
 <h1>Store: @Html.DisplayFor(model => model.Name)</h1>
@@ -11,9 +11,10 @@
 
     <div class="row">
         @foreach (var inventory in Model.Inventory)
-        { 
+        {
+
             <div class="col-md-3">
-                <a asp-controller="Products" asp-action="Details" asp-route-id="@inventory.Product.Id">
+                <a asp-controller="Inventory" asp-action="Products" asp-route-id="@inventory.Product.Id">
                     <div class="card">
                         <div class="card-header card-header-dim">
                             <span style="font-weight: bold; font-size:18px;">@inventory.Product.Title</span>
@@ -30,7 +31,4 @@
             </div>
         }
     </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>
