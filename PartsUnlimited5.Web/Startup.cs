@@ -67,8 +67,7 @@ namespace PartsUnlimited5.Web
                 endpoints.MapRazorPages();
             });
 
-            //TODO: Figure out why the enforce migrations here fails at azure
-            //InitializeDb(app.ApplicationServices);
+            InitializeDb(app.ApplicationServices);
         }
 
         private void InitializeDb(IServiceProvider sp)
