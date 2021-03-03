@@ -38,7 +38,7 @@ namespace PartsUnlimited5.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -67,9 +67,17 @@ namespace PartsUnlimited5.Web
                 endpoints.MapRazorPages();
             });
 
-            context.Database.Migrate();
+            //TODO: Figure out why the enforce migrations here fails at azure
+            //InitializeDb(app.ApplicationServices);
         }
 
-        
+        private void InitializeDb(IServiceProvider sp)
+        {
+            using (var scope = sp.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
+                context.Database.Migrate();
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PartsUnlimited5.Web.Data;
 using PartsUnlimited5.Web.Models;
@@ -35,6 +36,14 @@ namespace PartsUnlimited5.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult MigrateDatabase()
+        {
+            //TODO: solve deployment migration issue
+            //       then remove this method.
+            _context.Database.Migrate();
+            return RedirectToAction("Index");
         }
     }
 }
