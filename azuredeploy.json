@@ -37,7 +37,6 @@
         "databaseName": "[concat('PartsUnlimited5dbdn5', variables('uniqueString'))]"
     },
     "resources": [
-        //app service plan
         {
             "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2018-02-01",
@@ -65,7 +64,6 @@
                 "targetWorkerSizeId": 0
             }
         },
-        //website
         {
             "apiVersion": "2019-08-01",
             "name": "[variables('webSiteName')]",
@@ -200,7 +198,6 @@
                 }
             ]
         },
-        //sql server
         {
             "name": "[variables('sqlserverName')]",
             "type": "Microsoft.Sql/servers",
@@ -216,7 +213,6 @@
                 "version": "12.0"
             },
             "resources": [
-                //databaseweb
                 {
                     "name": "[variables('databaseName')]",
                     "type": "databases",
