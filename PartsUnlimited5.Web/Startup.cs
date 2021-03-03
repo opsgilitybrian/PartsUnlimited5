@@ -38,7 +38,7 @@ namespace PartsUnlimited5.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context)
         {
             if (env.IsDevelopment())
             {
@@ -67,16 +67,9 @@ namespace PartsUnlimited5.Web
                 endpoints.MapRazorPages();
             });
 
-            InitializeDatabase(app);
+            context.Database.Migrate();
         }
 
-        private void InitializeDatabase(IApplicationBuilder app)
-        {
-            using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                scope.ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
-                
-            }
-        }
+        
     }
 }
