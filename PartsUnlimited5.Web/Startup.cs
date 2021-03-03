@@ -67,18 +67,15 @@ namespace PartsUnlimited5.Web
                 endpoints.MapRazorPages();
             });
 
-            UpgradeDatabase(app);
+            InitializeDb(app.ApplicationServices);
         }
 
-        private void UpgradeDatabase(IApplicationBuilder app)
+        private void InitializeDb(IServiceProvider sp)
         {
-            using (var serviceScope = app.ApplicationServices.CreateScope())
+            using (var scope = sp.CreateScope())
             {
-                var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
-                if (context != null && context.Database != null)
-                {
-                    context.Database.Migrate();
-                }
+                var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
+                context.Database.Migrate();
             }
         }
     }
