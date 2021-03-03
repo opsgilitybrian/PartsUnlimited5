@@ -67,16 +67,16 @@ namespace PartsUnlimited5.Web
                 endpoints.MapRazorPages();
             });
 
-            InitializeDb(app.ApplicationServices);
+            //InitializeDb(app.ApplicationServices);
         }
 
-        private void InitializeDb(IServiceProvider sp)
-        {
-            using (var scope = sp.CreateScope())
-            {
-                var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
-                context.Database.Migrate();
-            }
-        }
+        //private void InitializeDb(IServiceProvider sp)
+        //{
+        //    using (var scope = sp.CreateScope())
+        //    {
+        //        var context = scope.ServiceProvider.GetService<ApplicationDbContext>();
+        //        context.Database.Migrate();
+        //    }
+        //}
     }
 }
